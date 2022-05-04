@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+
 .App {
   text-align: center;
+  max-height: 100%;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .App-logo {
@@ -35,4 +40,103 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.form{
+  display: flex;
+  flex-direction:column;
+  width:20%;
+  margin:0 auto;
+  padding-top: 10%;
+}
+
+#standard-basic{
+  padding-top: 2%;
+  margin:0 auto;
+  width: 100%;
+}
+
+.city-box{
+  padding-top:10px;
+}
+
+
+
+.state-box{
+  padding-top: 10px;
+}
+
+.button-div{
+  display:flex;
+  align-items:flex-end;
+  justify-content: flex-end;
+}
+
+#submit{
+  width:30%;
+  margin-top:2.5%;
+  
+}
+
+.weather-div {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  
+}
+
+
+
+.main-div{
+  display:flex;
+  flex-direction: column;
+  padding-top:10%;
+}
+
+
+.city p{
+  font-size: 30px;
+  color:#fff;
+}
+
+.weather-svg img{
+  width: 300px;
+ 
+}
+
+.temp p{
+  font-size: 100px;
+  color: #fff;
+  margin:0px;
+}
+
+.secondary-div{
+  display: flex;
+  flex-direction: row;
+  width:20%;
+  margin: 0 auto;
+  
+}
+
+.secondary-div-box{
+  width:33%;
+  margin: 0 auto;
+}
+
+
+
+.secondary-div-box p{
+  font-size: 30px;
+  color: #fff;
+  margin-top:5px;
+}
+
+#box-titles{
+  font-size:20px;
+  
 }
