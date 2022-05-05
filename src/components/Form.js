@@ -11,10 +11,7 @@ const americanstates = ['AL','AK','AZ','AR','CA', 'CO','CT','DE','FL',
 'MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK',
 'OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
 
-const styles = {
-    
-    
-};
+
 
 function Form() {
     //initialize state variables
@@ -26,7 +23,7 @@ function Form() {
 
     const handleSubmit = () => {
         const geoCall = 'http://api.openweathermap.org/geo/1.0/direct?q=';
-        const key = 'bd8f2f6392d75381ea48909665be17ec';
+        const key = 'ef0a2aeb99f471166b5075bb47a1d5a0';
         fetch(geoCall + city + "," + stateProv + ",USA&limit=5&appid=" + key)
             .then(response => response.json())
             .then(data => {
@@ -39,7 +36,7 @@ function Form() {
 
     if (complete === null) {
         return (
-            <div style={styles}>
+            <div >
             
                 <form className="form">
                     <div className="city-box">
