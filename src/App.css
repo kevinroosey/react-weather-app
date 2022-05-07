@@ -5,6 +5,26 @@
   text-align: center;
   max-height: 100%;
   font-family: 'Roboto Condensed', sans-serif;
+  
+}
+
+.nav-bar{
+  background-color: #282c34;
+  display:flex;
+  flex-direction: row;
+
+}
+
+.logo{
+  background-color: #282c34;
+  width:15%;
+  padding-right:85%;
+}
+
+.logo img{
+  width:50px;
+  padding-top: 12.5px;
+  padding-bottom: 12.5px;
 }
 
 .App-logo {
@@ -42,12 +62,18 @@
   }
 }
 
+.title p{
+  font-size: 30px;
+}
+
 .form{
   display: flex;
   flex-direction:column;
   width:20%;
   margin:0 auto;
   padding-top: 10%;
+  
+  background-color: #fff;
 }
 
 #standard-basic{
@@ -58,6 +84,7 @@
 
 .city-box{
   padding-top:10px;
+  width:100%;
 }
 
 
@@ -115,6 +142,11 @@
   margin:0px;
 }
 
+.weather-desc p{
+  font-size:30px;
+  color: #fff;
+}
+
 .secondary-div{
   display: flex;
   flex-direction: row;
@@ -139,4 +171,10 @@
 #box-titles{
   font-size:20px;
   
+}
+
+.newSearch{
+  width: 20%;
+  margin: 0 auto;
+  padding-top: 25px;
 }

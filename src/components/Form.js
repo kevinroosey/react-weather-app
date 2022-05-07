@@ -23,7 +23,7 @@ function Form() {
 
     const handleSubmit = () => {
         const geoCall = 'http://api.openweathermap.org/geo/1.0/direct?q=';
-        const key = 'ef0a2aeb99f471166b5075bb47a1d5a0';
+        const key = process.env.REACT_APP_KEY;
         fetch(geoCall + city + "," + stateProv + ",USA&limit=5&appid=" + key)
             .then(response => response.json())
             .then(data => {
@@ -36,19 +36,22 @@ function Form() {
 
     if (complete === null) {
         return (
-            <div >
+            <div className="page">
             
                 <form className="form">
+                    <div className="title">
+                        <p>Check the weather in your area</p>
+                    </div>
                     <div className="city-box">
                         <TextField id="standard-basic" label="City/Town" variant="outlined"
-                        onChange={({target}) => setCity(target.value)} value={city} style={{ width: 350 }}/>
+                        onChange={({target}) => setCity(target.value)} value={city} style={{ width: '100%' }}/>
                     </div>
                     <div className="state-box">
                         <Autocomplete
                             id="standard-basic"
                             options={americanstates}
                             renderInput={(params) => <TextField {...params} label="State" 
-                            onChange={({target}) => setStateProv(target.value)} value={stateProv} style={{ width: 350 }}/>}
+                            onChange={({target}) => setStateProv(target.value)} value={stateProv} style={{ width: '100%' }}/>}
                         />
                     </div>
                     <div className='button-div'>

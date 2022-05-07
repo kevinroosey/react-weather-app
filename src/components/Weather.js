@@ -6,21 +6,23 @@ import nightsky from '../assets/nightsky.png';
 import moon from '../assets/moon.png';
 import sun from '../assets/sun.png';
 import clouds from '../assets/clouds.png';
-
+import Navbar from './Navbar';
+import Form from './Form';
+import Button from '@mui/material/Button';
 function Weather(props) {
     const [temp, setTemp] = useState();
     const [feelsLike, setFeelsLike] = useState();
     const [humidity, setHumidity] = useState();
     const [weather, setWeather] = useState();
+    const [weatherDesc, setWeatherDesc] = useState();
     const [windSpeed, setWindSpeed] = useState();
     const [sunrise, setSunrise] = useState();
     const [sunset, setSunset] = useState();
     const [time, setTime] = useState();
-    
+    const [newSearch, setNewSearch] = useState(false);
     //use props.lat and props.long to call weather api
-    const key = 'bd8f2f6392d75381ea48909665be17ec';
-    const otherKey = 'ef0a2aeb99f471166b5075bb47a1d5a0';
-    const weatherAPI = 'https://api.openweathermap.org/data/2.5/weather?lat=' + props.lat + '&lon=' + props.long + '&appid=' + otherKey + '&units=imperial';
+    const key = process.env.REACT_APP_KEY;
+    const weatherAPI = 'https://api.openweathermap.org/data/2.5/weather?lat=' + props.lat + '&lon=' + props.long + '&appid=' + key + '&units=imperial';
     //call weatherAPI and setState
     fetch(weatherAPI)
         .then(response => response.json())
@@ -29,6 +31,7 @@ function Weather(props) {
             setFeelsLike(Math.round(data.main.feels_like));
             setHumidity(Math.round(data.main.humidity));
             setWeather(data.weather[0].main);
+            setWeatherDesc(data.weather[0].description);
             setWindSpeed(Math.round(data.wind.speed));
             setSunrise(data.sys.sunrise);
             setSunset(data.sys.sunset);
@@ -38,7 +41,6 @@ function Weather(props) {
     //if current time is in between sunrise and sunset, 
     //use daytime background, else use night
     const backgroundImage = time > sunrise && time < sunset ? DaytimeSun : nightsky;
-
     const styles = {
         backgroundImage: `url(${backgroundImage})`,
         backgroundPosition: 'center',
@@ -47,40 +49,61 @@ function Weather(props) {
         width: '100vw',
         height: '100vh'
     };
+
+    const handleSubmit = () => {
+        setNewSearch(true);
+    }
+
+
+    if (newSearch == false){
+        return (
+            <div className="weather-div" style={styles}>
+                <Navbar />
+                <div className="main-div">
+                    <div className="city">  
+                        <p>{props.city}</p>
+                    </div>
+                    <div className="weather-svg">
+                        <DisplayImage 
+                            time={time} 
+                            sunrise={sunrise} 
+                            sunset={sunset} 
+                            weather={weather}/> 
+                    </div>
+                    <div className="temp">
+                        <p>{temp}</p>
+                        
+                    </div>
+                    <div className="weather-desc">
+                        <p>{weatherDesc}</p>
+                        
+                    </div>
+                </div>
+                <div className="secondary-div">
+                    <div className="secondary-div-box">
+                        <p id="box-titles">Feels like</p>
+                        <p>{feelsLike}&deg;</p>
+                    </div>
+                    <div className="secondary-div-box">
+                        <p id="box-titles">Wind</p>
+                        <p>{windSpeed} mph</p>
+                    </div>
+                    <div className="secondary-div-box">
+                        <p id="box-titles">Humidity</p>
+                        <p>{humidity}%</p>
+                    </div>
+                </div>
+                <div className="newSearch">
+                    <Button id="newSearchButton" variant="contained" onClick={handleSubmit}>New City</Button>
+                </div>
+            </div>
+        );
+    } else {
+        return (
+            <Form />
+        )
+    }
     
-    return (
-        <div className="weather-div" style={styles}>
-            <div className="main-div">
-                <div className="city">  
-                    <p>{props.city}</p>
-                </div>
-                <div className="weather-svg">
-                    <DisplayImage 
-                        time={time} 
-                        sunrise={sunrise} 
-                        sunset={sunset} 
-                        weather={weather}/> 
-                </div>
-                <div className="temp">
-                    <p>{temp}&deg;</p>
-                </div>
-            </div>
-            <div className="secondary-div">
-                <div className="secondary-div-box">
-                    <p id="box-titles">Feels like</p>
-                    <p>{feelsLike}&deg;</p>
-                </div>
-                <div className="secondary-div-box">
-                    <p id="box-titles">Wind</p>
-                    <p>{windSpeed} mph</p>
-                </div>
-                <div className="secondary-div-box">
-                    <p id="box-titles">Humidity</p>
-                    <p>{humidity}%</p>
-                </div>
-            </div>
-        </div>
-    );
 }
 
 
